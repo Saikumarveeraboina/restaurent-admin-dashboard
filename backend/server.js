@@ -11,12 +11,15 @@ const connectDB = require("./config/db");
 const app = express();
 connectDB();
 
-app.use(
+aapp.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://restaurent-dashboard.netlify.app"
+    ]
   })
 );
+
 app.use(express.json());
 
 
