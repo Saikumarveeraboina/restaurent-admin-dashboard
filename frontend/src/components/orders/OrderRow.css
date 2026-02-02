@@ -1,0 +1,26 @@
+.order-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 20px;
+  padding: 14px 18px;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.order-row:hover {
+  transform: translateY(-2px);
+}
+
+.order-row h4 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.amount {
+  font-weight: 600;
+  color: #667eea;
+}

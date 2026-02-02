@@ -19,10 +19,14 @@ exports.getMenu = async (req, res) => {
 
 exports.searchMenu = async (req, res) => {
   const { q } = req.query;
+
   if (!q) return res.json([]);
 
-  const items = await MenuItem.find({ $text: { $search: q } });
-  res.json(items);
+  const results = await MenuItem.find({
+    $text: { $search: q },
+  });
+
+  res.json(results);
 };
 
 exports.getMenuById = async (req, res) => {
@@ -32,9 +36,33 @@ exports.getMenuById = async (req, res) => {
 };
 
 exports.createMenu = async (req, res) => {
-  const item = await MenuItem.create(req.body);
-  res.status(201).json(item);
+  try {
+    const { name, category, price } = req.body;
+
+    if (!name || !category || !price) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+    const item = await MenuItem.create({
+      name: name.trim(),
+      category,
+      price: Number(price),
+      isAvailable: true,
+    });
+
+    res.status(201).json(item);
+  } catch (err) {
+    console.error("CREATE MENU ERROR:", err);
+    res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
+  }
 };
+
+
 
 exports.updateMenu = async (req, res) => {
   const item = await MenuItem.findByIdAndUpdate(req.params.id, req.body, {

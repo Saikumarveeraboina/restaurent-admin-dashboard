@@ -1,0 +1,8 @@
+.status-dropdown {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  background: #fff;
+  cursor: pointer;
+}

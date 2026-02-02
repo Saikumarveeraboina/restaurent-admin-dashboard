@@ -2,18 +2,31 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    orderNumber: { type: String, unique: true },
+    orderNumber: {
+      type: String,
+      unique: true,
+    },
     items: [
       {
         menuItem: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "MenuItem",
+          required: true,
         },
-        quantity: Number,
-        price: Number,
+        quantity: {
+          type: Number,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
       },
     ],
-    totalAmount: Number,
+    totalAmount: {
+      type: Number,
+      required: true,
+    },
     status: {
       type: String,
       enum: ["Pending", "Preparing", "Ready", "Delivered", "Cancelled"],
@@ -25,11 +38,11 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-orderSchema.pre("save", function (next) {
+// ✅ SAFE pre-save hook (NO next, NO async)
+orderSchema.pre("save", function () {
   if (!this.orderNumber) {
     this.orderNumber = `ORD-${Date.now()}`;
   }
-  next();
 });
 
 module.exports = mongoose.model("Order", orderSchema);

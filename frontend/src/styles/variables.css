@@ -1,0 +1,12 @@
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+  --secondary-gradient: linear-gradient(135deg, #43cea2, #185a9d);
+
+  --bg-main: #f4f6fb;
+  --bg-card: #ffffff;
+
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+
+  --border-light: #e5e7eb;
+}
