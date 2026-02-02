@@ -12,13 +12,7 @@ const app = express();
 connectDB();
 
 aapp.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://restaurent-dashboard.netlify.app"
-    ]
-  })
-);
+  cors());
 
 app.use(express.json());
 
