@@ -2,7 +2,6 @@ const Order = require("../models/Order");
 
 exports.getOrders = async (req, res) => {
   const { page = 1, limit = 5, status } = req.query;
-
   const filter = status ? { status } : {};
 
   const orders = await Order.find(filter)
@@ -13,7 +12,6 @@ exports.getOrders = async (req, res) => {
 
   res.json(orders);
 };
-
 exports.getOrderById = async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     "items.menuItem"
