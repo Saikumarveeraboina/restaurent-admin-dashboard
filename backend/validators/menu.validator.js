@@ -6,7 +6,6 @@ const validateMenuItem = (req, res, next) => {
       message: "Name, category, and price are required",
     });
   }
-
   const allowedCategories = [
     "Appetizer",
     "Main Course",
@@ -19,14 +18,11 @@ const validateMenuItem = (req, res, next) => {
       message: "Invalid category value",
     });
   }
-
   if (typeof price !== "number" || price < 0) {
     return res.status(400).json({
       message: "Price must be a positive number",
     });
   }
-
   next();
 };
-
 module.exports = validateMenuItem;
